@@ -1,0 +1,99 @@
+# Project Setup Guide (Cloud-Based)
+
+This document outlines the system environment and tools used for building and documenting the IT support lab hosted in the cloud. This lab simulates a real-world help desk environment using a Windows Server VM in Azure.
+
+---
+
+## System Specs (Local Machine)
+
+- **Device**: Microsoft Surface Pro 11  
+- **Processor**: ARM-based Snapdragon  
+- **RAM**: 16 GB  
+- **Operating System**: Windows 11  
+- **Purpose**: Accessing Azure Portal, SSH/RDP into VMs, documenting lab setup
+
+---
+
+## Cloud Environment
+
+- **Cloud Provider**: Microsoft Azure  
+- **Virtual Machine OS**: Windows Server 2019 Datacenter  
+- **VM Size**: To be determined based on performance and cost  
+- **Region**: (you’ll choose based on your location or preference)
+
+---
+
+## Tools Required
+
+- Git for Windows (version control)  
+- Git Bash or Windows Terminal  
+- Markdown editor (like VS Code or Notepad++)  
+- Microsoft Azure account  
+- Azure Portal access  
+- (Optional) Azure CLI for advanced management
+
+---
+
+# IT Helpdesk VM Lab Setup
+
+## Overview
+This lab simulates setting up a Windows Server 2019 VM for basic IT support functions including configuring networking and adding server roles.
+
+---
+
+## 1. VM Initialization
+
+**Screenshot: Initial Server Manager screen**
+![Server Manager](./screenshots/vm-server-manager-initial-setup.png)
+
+- Booted up the VM using Azure.
+- Launched Server Manager and verified default configuration.
+
+---
+
+## 2. Network Configuration
+
+**Screenshot: `ipconfig` before**
+![IPConfig - Before](./screenshots/vm-internal-ipconfig-screenshot.png)
+
+- Opened Command Prompt to check current IP settings.
+
+**Screenshot: Network Connections**
+![Network Connections](./screenshots/vm_network_connections.png)
+
+**Screenshot: Ethernet Properties**
+![Ethernet Properties](./screenshots/vm-ethernet-properties.png)
+
+---
+
+## 3. Set Static IP Address
+
+**Screenshot: IPv4 Properties - Before**
+![IPv4 Before](./screenshots/vm-ipv4_properties.png)
+
+- Assigned static IP: `10.0.0.5`
+- Subnet: `255.0.0.0`
+- Gateway: `10.0.0.1`
+
+**Screenshot: IPv4 Properties - After**
+![IPv4 After](./screenshots/vm-ipv4_properties_after.png)
+
+**Screenshot: `ipconfig` after**
+![IPConfig - After](./screenshots/ipconfig-confirmation.png)
+
+---
+
+## 4. Add DHCP Server Role
+
+**Screenshot: DHCP Role Selected**
+![DHCP Role](./screenshots/DHCP_Role_Features_Selected.png)
+
+- Selected "DHCP Server" in Server Manager.
+- Resolved validation warning by setting static IP prior to installation.
+
+---
+
+## 5. Summary
+
+- VM is fully initialized with a static IP address.
+- DHCP role installed and ready for further configuration.

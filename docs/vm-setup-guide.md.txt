@@ -1,0 +1,188 @@
+# VM Setup Guide
+
+This guide outlines the steps taken to configure a Windows Server 2019 virtual machine in Microsoft Azure for the IT Support Lab project.
+
+---
+
+## Step 1: VM Basics Configuration
+
+The following options were selected when creating the virtual machine:
+
+- **Image**: Windows Server 2019 Datacenter – x64 Gen2 (Free Tier Eligible)
+- **Size**: Standard_B1s – 1 vCPU, 1 GiB memory (within free trial credits)
+- **Region**: East US
+- **Availability Zone**: Zone 1
+- **Username**: adminuser
+- **Authentication**: Password
+- **Inbound Port Rule**: RDP (3389) enabled for remote access
+
+![VM Basics](../screenshot/01-vm-basics.png)
+
+---
+
+## Disk Configuration
+
+In this step, I configured the virtual machine's OS disk settings.
+
+- OS Disk Size: Image default (127 GiB)
+- Disk Type: Premium SSD (LRS)
+- Encryption: Platform-managed key
+- Delete with VM: Enabled to conserve resources
+- No additional data disks were added
+
+**Screenshot:**  
+![Disk Setup](../screenshot/02-disk-setup.png)
+
+---
+
+## VM Networking Configuration
+
+This section outlines the virtual network interface setup for the Windows Server 2019 VM in Azure. Screenshots are included to show detailed configuration settings.
+
+### Network Interface Settings
+
+- **Virtual Network**: (new) windows-lab-vm-vnet
+- **Subnet**: (new) default (10.0.0.0/24)
+- **Public IP**: (new) windows-lab-vm-ip
+- **NIC Network Security Group**: Basic
+- **Public Inbound Ports**: Allow selected ports
+- **Inbound Port Rules**: RDP (3389) — enables remote desktop access
+
+> 🔒 **Note**: Allowing all IP addresses is suitable for temporary lab/testing purposes only. For production environments, IP restrictions should be applied.
+
+### Load Balancing
+
+- **Load Balancing**: None
+
+### Screenshots
+
+- `screenshot/02a-networking-top.png`  
+- `screenshot/02b-networking-bottom.png`  
+
+These images capture the full network interface configuration, from top to bottom.
+
+---
+
+## VM Management Configuration
+
+This section covers the settings configured under the **Management** tab during the creation of the Windows Server 2019 VM.
+
+### Management Settings
+
+* **Microsoft Defender for Cloud**: Enabled basic plan for free  
+* **System Assigned Managed Identity**: Not enabled  
+* **Microsoft Entra ID**: Not enabled  
+* **Auto-shutdown**: Not enabled  
+* **Backup**: Not enabled  
+* **Guest OS Updates**: Not enabled  
+* **Patch Orchestration Options**: Automatic by OS (Windows Automatic Updates)
+
+> **Note**: Auto-shutdown was left disabled because I will manually shut down the VM after each use based on my work schedule. This ensures flexibility while avoiding unnecessary runtime costs.
+
+### Screenshots
+
+- `screenshot/03a-management.png`  
+- `screenshot/03b-management.png`
+
+These screenshots document the full set of options shown under the Management tab.
+
+---
+
+## VM Monitoring Configuration
+
+This section explains how monitoring was disabled to stay within the Azure free tier.
+
+### Monitoring Settings
+
+* **Enable Recommended Alert Rules**: Not enabled  
+* **Boot Diagnostics**: Disabled  
+* **OS Guest Diagnostics**: Not enabled  
+* **Application Health Monitoring**: Not enabled
+
+> **Note**: Monitoring was disabled to reduce storage and telemetry usage, keeping the setup free during the Azure trial period.
+
+### Screenshot
+
+- `screenshot/04-monitoring.png`
+
+---
+
+VM Advanced Configuration
+This section outlines additional options under the Advanced tab for the Windows Server 2019 VM. These were configured to avoid any charges outside the Azure free tier.
+
+Advanced Settings
+Extensions: None selected
+
+VM Applications: None selected
+
+Custom Data: Not provided
+
+User Data: Not enabled
+
+NVMe Performance: Not enabled
+
+Host Group: No host groups found
+
+Capacity Reservation Group: None
+
+Proximity Placement Group: None
+
+Note: All advanced settings were left at their default values to ensure compatibility with the free services included in the Azure trial. These options are intended for more complex or performance-intensive scenarios and are not needed for this lab setup.
+
+Screenshots
+screenshot/05a-advanced-top.png
+
+screenshot/05b-advanced-bottom.png
+
+screenshot/05c-advanced-host.png
+
+These screenshots document the full set of configuration options under the Advanced tab, from top to bottom.
+
+---
+
+VM Tags Configuration
+This section describes the Tags settings used during the virtual machine setup. Tags are optional and used primarily for organizing resources in production environments.
+
+Tag Settings
+Tags Used: None
+
+Resource Scope: Not specified (default 14 resources)
+
+Note: Tags were not applied since this is a single VM lab setup for educational purposes and does not require billing or resource grouping management.
+
+Screenshot
+screenshot/06-tags.png
+
+This image shows the empty tag fields at the time of configuration.
+
+---
+
+VM Final Review and Configuration Summary
+This section summarizes the full VM configuration as reviewed before deployment. Screenshots are included to verify each section and confirm that the build meets project and cost-efficiency goals.
+
+Summary Settings
+Subscription: Azure subscription 1
+Resource Group: (new) it-lab-rg
+VM Name: windows-lab-vm
+Region: East US
+Image: Windows Server 2019 Datacenter - Gen2
+Size: Standard B1s (1 vCPU, 1 GiB memory)
+OS Disk Type: Premium SSD LRS
+Public Inbound Ports: RDP (3389)
+Monitoring & Management: All disabled except Microsoft Defender (Basic/Free)
+Networking: Custom VNet/Subnet, Public IP enabled, Accelerated Networking: Off
+Advanced Settings: All left at defaults to reduce complexity and cost
+
+Note: VM settings were carefully chosen to balance performance and cost-efficiency. Premium SSD was kept to ensure responsive performance during the short project duration, covered by the Azure free trial credit.
+
+Screenshots
+screenshot/07a-final-review-top.png
+
+screenshot/07b-final-review-middle.png
+
+screenshot/07c-final-review-middle.png
+
+screenshot/07d-final-review-bottom.png
+
+These screenshots capture the final overview screen before VM creation, confirming all project choices and configurations.
+
