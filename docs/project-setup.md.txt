@@ -44,7 +44,7 @@ This lab simulates setting up a Windows Server 2019 VM for basic IT support func
 ## 1. VM Initialization
 
 **Screenshot: Initial Server Manager screen**
-![Server Manager](./screenshots/vm-server-manager-initial-setup.png)
+![Server Manager](./screenshot/vm-server-manager-initial-setup.png)
 
 - Booted up the VM using Azure.
 - Launched Server Manager and verified default configuration.
@@ -54,32 +54,32 @@ This lab simulates setting up a Windows Server 2019 VM for basic IT support func
 ## 2. Network Configuration
 
 **Screenshot: `ipconfig` before**
-![IPConfig - Before](./screenshots/vm-internal-ipconfig-screenshot.png)
+![IPConfig - Before](./screenshot/vm-internal-ipconfig-screenshot.png)
 
 - Opened Command Prompt to check current IP settings.
 
 **Screenshot: Network Connections**
-![Network Connections](./screenshots/vm_network_connections.png)
+![Network Connections](./screenshot/vm_network_connections.png)
 
 **Screenshot: Ethernet Properties**
-![Ethernet Properties](./screenshots/vm-ethernet-properties.png)
+![Ethernet Properties](./screenshot/vm-ethernet-properties.png)
 
 ---
 
 ## 3. Set Static IP Address
 
 **Screenshot: IPv4 Properties - Before**
-![IPv4 Before](./screenshots/vm-ipv4_properties.png)
+![IPv4 Before](./screenshot/vm-ipv4_properties.png)
 
 - Assigned static IP: `10.0.0.5`
 - Subnet: `255.0.0.0`
 - Gateway: `10.0.0.1`
 
 **Screenshot: IPv4 Properties - After**
-![IPv4 After](./screenshots/vm-ipv4_properties_after.png)
+![IPv4 After](./screenshot/vm-ipv4_properties_after.png)
 
 **Screenshot: `ipconfig` after**
-![IPConfig - After](./screenshots/ipconfig-confirmation.png)
+![IPConfig - After](./screenshot/ipconfig-confirmation.png)
 
 ---
 
@@ -99,12 +99,90 @@ This lab simulates setting up a Windows Server 2019 VM for basic IT support func
 
 ---
 
-## 5. Summary
+## 6. Promote Server to Domain Controller
+Screenshot: Server promoted to domain controller (./screenshot/vm-server-promotion.png)
 
-- VM is now fully initialized with core infrastructure roles.
-- These services will support help desk simulations like:
-  - Domain join issues
-  - DNS lookup failures
-  - Printer access problems
-  - Group policy misconfigurations
-  - Internal web service outages
+- After installing AD DS, a post-deployment task appeared in Server Manager:
+Promote this server to a domain controller
+
+- Selected Add a new forest
+
+- Root domain name: mydomain.local
+
+- Chose Windows Server 2016 for both:
+
+- Forest functional level
+
+- Domain functional level
+
+- Enabled:
+
+- DNS Server
+
+- Global Catalog (GC)
+
+- Set Directory Services Restore Mode (DSRM) password: P@ssw0rd123!
+
+- Warning appeared:
+- "A delegation for this DNS server cannot be created..."
+
+- Expected in standalone or lab setups — safe to ignore.
+
+- Continued with the installation
+
+- Restarted VM when prompted
+
+## 7. Domain Controller Verification
+- Screenshot: Server Manager - AD DS Active (./screenshot/vm-domain-creation.png)
+
+- Screenshot: Tools Menu - Domain Tools Available (./screenshot/vm-john-doe-creation.png)
+
+- Logged in as:
+
+- makefile
+- Copy
+- Edit
+- Username: MYDOMAIN\Administrator
+- Password: P@ssw0rd123!
+- Verified successful promotion:
+
+- AD DS active in Server Manager
+
+- Accessed tools:
+
+- Active Directory Users and Computers
+
+- DNS
+
+- Group Policy Management
+
+## 8. Create Organizational Unit and Test User
+Screenshot: OU and test user created (./screenshot/vm-ou-creation.png)
+
+- In Active Directory Users and Computers:
+
+- Created Organizational Unit (OU): LabUsers
+
+- Created test user:
+
+- Username: john.doe
+- Email: test.user@mydomain.local
+- Password: Jd@123456!
+## 9. Grant RDP Access to Domain User
+- Screenshot: John Doe added to Remote Desktop Users
+
+- Added john.doe to Remote Desktop Users group
+
+- This grants permission to log in via RDP
+
+## 10. Confirm RDP Login as Domain User
+- Screenshot: RDP Login as John Doe (./screenshot/vm-rdp-access-for-john-doe.png)
+- Screenshot: Successful login with first mock user (./screenshot/vm-successful-log-in-john-doe.png)
+
+- Successfully logged in using:
+
+Username: john.doe@mydomain.local
+Password: Jd@123456!
+Verified domain login and RDP access — domain controller setup complete
+
+
