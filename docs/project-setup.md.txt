@@ -83,17 +83,28 @@ This lab simulates setting up a Windows Server 2019 VM for basic IT support func
 
 ---
 
-## 4. Add DHCP Server Role
+## 4. Add Core Server Roles
 
-**Screenshot: DHCP Role Selected**
-![DHCP Role](./screenshots/DHCP_Role_Features_Selected.png)
+**Screenshot: Server Roles Selected**  
+![Server Roles](./screenshots/01a-vm-server-manager-role-selection.png)(./screenshots/01b-vm-server-manager-role-selection.png)
 
-- Selected "DHCP Server" in Server Manager.
-- Resolved validation warning by setting static IP prior to installation.
+- Installed **DHCP Server** to handle dynamic IP assignment for future client VM(s).
+- Installed **DNS Server** to enable domain name resolution for internal network services.
+- Installed **Active Directory Domain Services (AD DS)** to configure domain controller functionality and support user authentication.
+- Installed **File and Storage Services** to support shared folders and simulate mapped drive access.
+- Installed **Print and Document Services** with Print Server role to simulate network printer sharing and print-related support tickets.
+- Installed **Web Server (IIS)** to host internal websites for simulating internal apps, and troubleshooting “site unavailable” errors.
+
+> Resolved validation warning by setting a static IP address prior to role installation.
 
 ---
 
 ## 5. Summary
 
-- VM is fully initialized with a static IP address.
-- DHCP role installed and ready for further configuration.
+- VM is now fully initialized with core infrastructure roles.
+- These services will support help desk simulations like:
+  - Domain join issues
+  - DNS lookup failures
+  - Printer access problems
+  - Group policy misconfigurations
+  - Internal web service outages
