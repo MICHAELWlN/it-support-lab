@@ -185,4 +185,10 @@ Username: john.doe@mydomain.local
 Password: Jd@123456!
 Verified domain login and RDP access — domain controller setup complete
 
+## 11. Changed the Ipv4 settings of the client virtual machine I made to match the private IP address of my domain controller
+- Ran ipconfig /flushdns, and ipconfig /registerdns to set the new dns on the client machine
+- Tested domain connectivity with ping
+- Remember to run command prompt as admin
+- Found out domain name by running Win R on DC vm and typing sysdm.cpl and looking under the computer name tab, mydomain.local
+
 
