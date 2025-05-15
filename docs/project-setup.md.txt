@@ -191,4 +191,9 @@ Verified domain login and RDP access — domain controller setup complete
 - Remember to run command prompt as admin
 - Found out domain name by running Win R on DC vm and typing sysdm.cpl and looking under the computer name tab, mydomain.local
 
+## 12. Troubleshooted User John Doe Failed Login to Client Machine
+- Adjusted Group Policy Settings on the Domain Controller VM
+- Adjusted Local Group Policy on the Client Machine
+- Adjusted User Properties on Client Machine
+
 
