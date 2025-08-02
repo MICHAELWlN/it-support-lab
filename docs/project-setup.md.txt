@@ -196,4 +196,11 @@ Verified domain login and RDP access — domain controller setup complete
 - Adjusted Local Group Policy on the Client Machine
 - Adjusted User Properties on Client Machine
 
+## 13. Fixed AD login issue after password reset
+- Resetted John Doe’s password, checked the box User must reset password after next login so the user (John Doe) could set their own password
+- Attemped to login using resetted password, encountered error message saying user must change password before logging in for the first time
+- Unchecked the box, user must change password at next login
+- Successfully logged in to john doe
+
+
 
