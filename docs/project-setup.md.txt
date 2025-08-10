@@ -202,5 +202,21 @@ Verified domain login and RDP access — domain controller setup complete
 - Unchecked the box, user must change password at next login
 - Successfully logged in to john doe
 
+## 14. John Doe Can’t Access Shared Drive
+- Created Shares folders in Windows C: Shares
+- Shared access to Domain Users (John Doe)
+- Turned on Private Network Discovery on DC vm via control panel -> network and sharing center -> change advanced sharing settings -> network discovery -> file and printer sharing
+- John doe successfully accessed shared folder on client vm via \\windows-lab-vm\Shares (Use netbios - windows-lab-vm instead of dns resolution - mydomain.local)
+
+Mock Ticket - John Doe has access to shared folder locally but not over the network
+- Root Cause: Domain Users group removed from share permissions
+- Removed domain users from sharing permissions, kept group on ntfs permissions (local)
+- John Doe is able to modify folder locally on dc vm verified via local login
+- John Doe tries accessing folder on client vm, receives message saying he’s not authorized
+- Added Domain Users group on sharing permissions
+- John Doe can successfully access folder over the network now
+- Used File Explorer UNC path to verify folder network access on client vm (windows + r -> \\windows-lab-vm\\Shares)
+
+
 
 
