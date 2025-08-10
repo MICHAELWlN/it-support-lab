@@ -138,13 +138,7 @@ Promote this server to a domain controller
 - Screenshot: Tools Menu - Domain Tools Available (./screenshot/vm-john-doe-creation.png)
 
 - Logged in as:
-
-- makefile
-- Copy
-- Edit
 - Username: MYDOMAIN\Administrator
-- Password: P@ssw0rd123!
-- Verified successful promotion:
 
 - AD DS active in Server Manager
 
@@ -167,7 +161,7 @@ Screenshot: OU and test user created (./screenshot/vm-ou-creation.png)
 
 - Username: john.doe
 - Email: test.user@mydomain.local
-- Password: Jd@123456!
+
 ## 9. Grant RDP Access to Domain User
 - Screenshot: John Doe added to Remote Desktop Users
 
@@ -182,7 +176,6 @@ Screenshot: OU and test user created (./screenshot/vm-ou-creation.png)
 - Successfully logged in using:
 
 Username: john.doe@mydomain.local
-Password: Jd@123456!
 Verified domain login and RDP access — domain controller setup complete
 
 ## 11. Changed the Ipv4 settings of the client virtual machine I made to match the private IP address of my domain controller
